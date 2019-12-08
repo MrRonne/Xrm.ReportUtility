@@ -1,26 +1,40 @@
-﻿using System.Collections.Generic;
+﻿using Xrm.ReportUtility.Infrastructure.Transformers.Abstract;
 using Xrm.ReportUtility.Interfaces;
 using Xrm.ReportUtility.Models;
+using Xrm.ReportUtility.Services;
 
 namespace Xrm.ReportUtility.Infrastructure.Transformers
 {
-    class DataTransformer : IDataTransformer
+    public class DataTransformer : DataTransformerBase
     {
-        private readonly ReportConfig _config;
+        public DataTransformer(IDataTransformer dataTransformer) : base(dataTransformer) { }
 
-        public DataTransformer(ReportConfig config)
+        public override Report TransformData(DataRow[] data)
         {
-            _config = config;    
-        }
+            var report = DataTransformer.TransformData(data);
 
-        public Report TransformData(DataRow[] data)
-        {
-            return new Report
+            report.Table.Attributes.AddLast(TranslationService.Name);
+            report.Table.Attributes.AddLast(TranslationService.Volume);
+            report.Table.Attributes.AddLast(TranslationService.Weight);
+            report.Table.Attributes.AddLast(TranslationService.Cost);
+            report.Table.Attributes.AddLast(TranslationService.Count);
+            /*
+            while (report.Table.Rows.Count < data.Length)
+                report.Table.AddRow();
+                */
+            for (int i = 0; i < data.Length; i++)
             {
-                Config = _config,
-                Data = new DataRow[0],
-                Rows = new List<ReportRow>()
-            };
+                var dataRow = data[i];
+                report.Table.AddRow();
+                var tableRow = report.Table.Rows[i];
+                tableRow.Add(TranslationService.Name, dataRow.Name);
+                tableRow.Add(TranslationService.Volume, dataRow.Volume);
+                tableRow.Add(TranslationService.Weight, dataRow.Weight);
+                tableRow.Add(TranslationService.Cost, dataRow.Cost);
+                tableRow.Add(TranslationService.Count, dataRow.Count);
+            }
+
+            return report;
         }
     }
 }

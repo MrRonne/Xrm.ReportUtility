@@ -5,18 +5,18 @@ using Xrm.ReportUtility.Models;
 
 namespace Xrm.ReportUtility.Infrastructure.Transformers
 {
-    public class VolumeSumReportTransformer : ReportServiceTransformerBase
+    public class CostSumTransformer : DataTransformerBase
     {
-        public VolumeSumReportTransformer(IDataTransformer reportService) : base(reportService) { }
+        public CostSumTransformer(IDataTransformer dataTransformer) : base(dataTransformer) { }
 
         public override Report TransformData(DataRow[] data)
         {
             var report = DataTransformer.TransformData(data);
 
-            report.Rows.Add(new ReportRow
+            report.FinalRows.Add(new ReportRow
             {
-                Name = "Суммарный объём",
-                Value = data.Sum(i => i.Volume * i.Count)
+                Name = "Суммарная стоимость",
+                Value = data.Sum(i => i.Cost * i.Count)
             });
 
             return report;

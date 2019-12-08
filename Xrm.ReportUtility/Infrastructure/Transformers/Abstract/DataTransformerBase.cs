@@ -3,11 +3,11 @@ using Xrm.ReportUtility.Models;
 
 namespace Xrm.ReportUtility.Infrastructure.Transformers.Abstract
 {
-    public abstract class ReportServiceTransformerBase : IDataTransformer
+    public abstract class DataTransformerBase : IDataTransformer
     {
         protected readonly IDataTransformer DataTransformer;
 
-        protected ReportServiceTransformerBase(IDataTransformer dataTransformer)
+        protected DataTransformerBase(IDataTransformer dataTransformer)
         {
             DataTransformer = dataTransformer;
         }

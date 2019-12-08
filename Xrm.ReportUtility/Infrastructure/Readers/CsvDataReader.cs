@@ -1,16 +1,14 @@
 ﻿using System.IO;
 using System.Linq;
 using CsvHelper;
-using Xrm.ReportUtility.Infrastructure;
+using Xrm.ReportUtility.Infrastructure.Readers.Abstract;
 using Xrm.ReportUtility.Models;
 
-namespace Xrm.ReportUtility.Services
+namespace Xrm.ReportUtility.Infrastructure.Readers
 {
-    public class CsvReportService : ReportServiceBase
+    public class CsvDataReader : DataReaderBase
     {
-        public CsvReportService(string[] args) : base(args) { }
-
-        protected override DataRow[] GetDataRows(string text)
+        protected override DataRow[] ParseData(string text)
         {
             using (TextReader textReader = new StringReader(text))
             {

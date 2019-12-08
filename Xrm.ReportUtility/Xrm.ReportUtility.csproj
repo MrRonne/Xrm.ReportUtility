@@ -48,27 +48,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\Transformers\Abstract\ReportServiceTransformerBase.cs" />
-    <Compile Include="Infrastructure\Transformers\DataTransformer.cs" />
-    <Compile Include="Infrastructure\Transformers\VolumeSumReportTransformer.cs" />
-    <Compile Include="Infrastructure\Transformers\WeightSumReportTransfomer.cs" />
-    <Compile Include="Infrastructure\Transformers\CostSumReportTransformer.cs" />
-    <Compile Include="Infrastructure\Transformers\CountSumReportTransformer.cs" />
+    <Compile Include="Infrastructure\Builders\ConfigBuilder.cs" />
+    <Compile Include="Infrastructure\Builders\ReadBuilder.cs" />
+    <Compile Include="Infrastructure\Builders\ReportBuilder.cs" />
+    <Compile Include="Infrastructure\Readers\CsvDataReader.cs" />
+    <Compile Include="Infrastructure\Readers\TxtDataReader.cs" />
+    <Compile Include="Infrastructure\Readers\XlsxDataReader.cs" />
+    <Compile Include="Infrastructure\Transformers\Abstract\DataTransformerBase.cs" />
+    <Compile Include="Infrastructure\Transformers\EmptyTransformer.cs" />
+    <Compile Include="Infrastructure\Transformers\VolumeSumTransformer.cs" />
+    <Compile Include="Infrastructure\Transformers\WeightSumTransformer.cs" />
+    <Compile Include="Infrastructure\Transformers\CostSumTransformer.cs" />
+    <Compile Include="Infrastructure\Transformers\CountSumTransformer.cs" />
+    <Compile Include="Infrastructure\Transformers\WithIndexTransformer.cs" />
+    <Compile Include="Infrastructure\Transformers\WithoutCostTransformer.cs" />
+    <Compile Include="Infrastructure\Transformers\WithoutCountTransformer.cs" />
+    <Compile Include="Infrastructure\Transformers\WithoutVolumeTransformer.cs" />
+    <Compile Include="Infrastructure\Transformers\WithoutWeightTransformer.cs" />
+    <Compile Include="Infrastructure\Transformers\WithTotalVolumeTransformer.cs" />
+    <Compile Include="Infrastructure\Transformers\WithTotalWeightTransformer.cs" />
+    <Compile Include="Interfaces\IDataReader.cs" />
     <Compile Include="Interfaces\IReportService.cs" />
     <Compile Include="Models\ReportRow.cs" />
-    <Compile Include="Services\CsvReportService.cs" />
+    <Compile Include="Infrastructure\Readers\Abstract\DataReaderBase.cs" />
+    <Compile Include="Models\ReportTable.cs" />
     <Compile Include="Interfaces\IDataTransformer.cs" />
-    <Compile Include="Infrastructure\DataTransformerCreator.cs" />
-    <Compile Include="Services\ReportServiceBase.cs" />
-    <Compile Include="Infrastructure\Transformers\WithDataReportTransformer.cs" />
+    <Compile Include="Infrastructure\Transformers\DataTransformer.cs" />
     <Compile Include="Infrastructure\RowDataMapper.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\ReportConfig.cs" />
     <Compile Include="Models\DataRow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\TxtReportService.cs" />
-    <Compile Include="Services\XlsxReportService.cs" />
+    <Compile Include="Services\TranslationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

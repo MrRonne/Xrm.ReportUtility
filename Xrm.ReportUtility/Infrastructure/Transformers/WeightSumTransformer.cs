@@ -5,15 +5,15 @@ using Xrm.ReportUtility.Models;
 
 namespace Xrm.ReportUtility.Infrastructure.Transformers
 {
-    public class WeightSumReportTransfomer : ReportServiceTransformerBase
+    public class WeightSumTransformer : DataTransformerBase
     {
-        public WeightSumReportTransfomer(IDataTransformer reportService) : base(reportService) { }
+        public WeightSumTransformer(IDataTransformer dataTransformer) : base(dataTransformer) { }
 
         public override Report TransformData(DataRow[] data)
         {
             var report = DataTransformer.TransformData(data);
 
-            report.Rows.Add(new ReportRow
+            report.FinalRows.Add(new ReportRow
             {
                 Name = "Суммарный вес",
                 Value = data.Sum(i => i.Weight * i.Count)
